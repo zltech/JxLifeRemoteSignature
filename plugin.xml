@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-JxLifeRemoteSignature" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>JxLifeRemoteSignature</name>
+    <js-module name="JxLifeRemoteSignature" src="www/JxLifeRemoteSignature.js">
+        <clobbers target="cordova.plugins.JxLifeRemoteSignature" />
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="JxLifeRemoteSignature">
+                <param name="ios-package" value="JxLifeRemoteSignature" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/JxLifeRemoteSignature.m" />
+        
+        <!--  ca 文件  -->
+        <header-file src="src/ios/caLib/CachetArray.h" />
+        <header-file src="src/ios/caLib/CommentCaptureObj.h" />
+        <header-file src="src/ios/caLib/KWRule.h" />
+        <header-file src="src/ios/caLib/OCRCaptureObj.h" />
+        <header-file src="src/ios/caLib/OrigialContentObj.h" />
+        <header-file src="src/ios/caLib/SignAPI.h" />
+        <header-file src="src/ios/caLib/SignCaptureObj.h" />
+        <header-file src="src/ios/caLib/Signer.h" />
+        <header-file src="src/ios/caLib/SignRule.h" />
+        <header-file src="src/ios/caLib/XYZRule.h" />
+
+        <resource-file src="src/ios/caLib/BjcaConfig.plist" />
+        <source-file src="src/ios/caLib/SignBundle.bundle" />
+        <source-file src="src/ios/caLib/libSignAPI.a" framework="true"/>
+        
+        <!--   AFNetwork      -->
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFNetworking.h" />
+        
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFHTTPSessionManager.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFHTTPSessionManager.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFSecurityPolicy.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFSecurityPolicy.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLRequestSerialization.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLRequestSerialization.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLResponseSerialization.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLResponseSerialization.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking/AFURLSessionManager.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworking/AFURLSessionManager.m" />
+        
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIImage+AFNetworking.h" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h" />
+        
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFAutoPurgingImageCache.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFAutoPurgingImageCache.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFImageDownloader.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFImageDownloader.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m" />
+        <header-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m" />
+        
+        <!--  自定义ca      -->
+        <header-file src="src/ios/JXCAFuntion.h" />
+        <source-file src="src/ios/JXCAFuntion.m" />
+        <!--   类     -->
+        <header-file src="src/ios/MAFNetworkingTool.h" />
+        <source-file src="src/ios/MAFNetworkingTool.m" />
+        
+        <!--系统依赖  -->
+        <framework src="AVFoundation.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="UIKit.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="CoreAudio.framework" />
+        <framework src="ImageIO.framework" />
+        <framework src="CFNetwork.framework" weak="true" />
+        
+    </platform>
+
+    <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+    <feature name="JxLifeRemoteSignature">
+        <param name="android-package" value="jxlife.cordova.plugins.wpesignatures.JxLifeRemoteSignature" />
+    </feature>
+    </config-file>
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+		<activity android:name="cn.org.bjca.anysign.android.R3.api.CameraActivity" android:screenOrientation="landscape" />
+	</config-file>
+	<config-file parent="/manifest" target="AndroidManifest.xml">
+		<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+		<uses-permission android:name="android.permission.RECORD_AUDIO" />
+		<uses-permission android:name="android.permission.CAMERA" />
+		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		<uses-permission android:name="android.permission.INTERNET" />
+		<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	</config-file>
+	
+	<source-file src="src/android/libs/AnySign_V1.3.3_MSPS_1.7.0.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/AnySign_V1.3.3_MSPS_1.7.0.jar" level="project" />
+	
+	<source-file src="src/android/libs/bjca_anysign_tool.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/bjca_anysign_tool.jar" level="project" />
+	
+	<source-file src="src/android/libs/httpmime-4.2.2.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/httpmime-4.2.2.jar" level="project" />
+	
+	<source-file src="src/android/libs/jx-mit-client.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/jx-mit-client.jar" level="project" />
+	
+	<source-file src="src/android/libs/wsecx_android_package_v1.4.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/wsecx_android_package_v1.4.jar" level="project" />
+	
+		<source-file src="src/android/libs/gson-2.2.4.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/gson-2.2.4.jar" level="project" />
+	
+	<source-file src="src/android/libs/org.apache.http.legacy.jar" target-dir="libs"/>
+	<orderEntry type="library" name="libs/org.apache.http.legacy.jar" level="project" />
+	
+	<resource-file src="src/android/res/xml/bg_dialog.xml"
+	target="res/xml/bg_dialog.xml" />
+	
+	<resource-file src="src/android/res/xml/load_bg.xml"
+	target="res/xml/load_bg.xml" />
+	
+	<resource-file src="src/android/res/layout/loading_dialog.xml"
+	target="res/layout/loading_dialog.xml" />
+	
+	<resource-file src="src/android/res/values/dialog_styles.xml"
+	target="res/values/dialog_styles.xml" />
+	
+	<source-file src="src/android/src/afinal/core/AbstractCollection.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/ArrayDeque.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/Arrays.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/AsyncTask.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/Deque.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/FileNameGenerator.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/core/Queue.java"
+	target-dir="src/afinal/core" />
+	
+	<source-file src="src/android/src/afinal/http/AjaxCallBack.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/AjaxParams.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/HttpHandler.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/MultipartEntity.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/PreferencesCookieStore.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/RetryHandler.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/SyncRequestHandler.java"
+	target-dir="src/afinal/http" />
+	
+	<source-file src="src/android/src/afinal/http/entityhandler/EntityCallBack.java"
+	target-dir="src/afinal/http/entityhandler" />
+	
+	<source-file src="src/android/src/afinal/http/entityhandler/FileEntityHandler.java"
+	target-dir="src/afinal/http/entityhandler" />
+	
+	<source-file src="src/android/src/afinal/http/entityhandler/StringEntityHandler.java"
+	target-dir="src/afinal/http/entityhandler" />
+	
+	<source-file src="src/android/src/jxlife/channel/FinalHttp.java"
+	target-dir="src/jxlife/channel" />
+	
+	<source-file src="src/android/src/jxlife/cordova/plugins/wpesignatures/JxLifeRemoteSignature.java"
+	target-dir="src/jxlife/cordova/plugins/JxLifeRemoteSignature" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/EsignTodoDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SiganatureCordovaImageVo.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureBizSubmitDataDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureCommitDataDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureDeesignImageDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureDelDataDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureDelSigPropDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureEsignFlagDataDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureGenerateTaskDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureInitDataDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureObjResponseDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureRequestEntity.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureSateAndImgsVo.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureTaskSMSDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureTaskSMSMessageDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureUploadImgDto.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignatureWrapDeeimgAndSBimg.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/SignImagesVo.java"
+	target-dir="src/jxlife/sigdto" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/cordova/CordovaActivityRequest.java"
+	target-dir="src/jxlife/sigdto/cordova" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/cordova/CordovaImgsAndDivResponse.java"
+	target-dir="src/jxlife/sigdto/cordova" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/cordova/CordovaResponse.java"
+	target-dir="src/jxlife/sigdto/cordova" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/cordova/CordovaTemplateInitDataResponse.java"
+	target-dir="src/jxlife/sigdto/cordova" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/response/SignatureEsignObjectInfoResponseDto.java"
+	target-dir="src/jxlife/sigdto/response" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/response/SignatureEsignToDoResponseDto.java"
+	target-dir="src/jxlife/sigdto/response" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/response/SignatureInitDataReponseDto.java"
+	target-dir="src/jxlife/sigdto/response" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/response/SignatureResponseBody.java"
+	target-dir="src/jxlife/sigdto/response" />
+	
+	<source-file src="src/android/src/jxlife/sigdto/response/SignatureSigRiskAndImgConfirmResponseDto.java"
+	target-dir="src/jxlife/sigdto/response" />
+	
+	<source-file src="src/android/src/jxlife/signature/service/SignatureBizService.java"
+	target-dir="src/jxlife/signature/service" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/JsonUtils.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/LoadingDialog.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/LoadingDialogUtils.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/MResource.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/NetWorkCallBack.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/signature/utils/Utils.java"
+	target-dir="src/jxlife/signature/utils" />
+	
+	<source-file src="src/android/src/jxlife/util/AppConfig.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/AppException.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/CharsetUtils.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/D.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/ImageUtils.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/MyHttpClient.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/OtherUtils.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/TimeOutException.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/UpdateAppCallBackListener.java"
+	target-dir="src/jxlife/util" />
+	
+	<source-file src="src/android/src/jxlife/util/tools/RemoteSignatureTools.java"
+	target-dir="src/jxlife/util/tools" />
+	
+	<source-file src="src/android/src/jxlife/util/tools/SignatureConstants.java"
+	target-dir="src/jxlife/util/tools" />
+	
+	<source-file src="src/android/src/jxlife/util/tools/SignatureTools.java"
+	target-dir="src/jxlife/util/tools" />
+	
+	<source-file src="src/android/assets/config.properties"
+	target-dir="assets" />
+	
+	<source-file src="src/android/assets/XSS.data"
+	target-dir="assets" />
+	
+	<source-file src="src/android/libs/arm64-v8a/libAnySign.so" target-dir="libs/arm64-v8a"/>
+	
+	<source-file src="src/android/libs/armeabi/libAnySign.so" target-dir="libs/armeabi"/>
+	
+	<source-file src="src/android/libs/armeabi-v7a/libAnySign.so" target-dir="libs/armeabi-v7a"/>
+	
+	<source-file src="src/android/libs/x86/libAnySign.so" target-dir="libs/x86"/>
+
+  </platform>
+</plugin>

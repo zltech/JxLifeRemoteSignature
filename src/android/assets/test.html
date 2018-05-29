@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+            <title>插件测试</title>
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="cordova_plugins.js"></script>
+            <script type="text/javascript">
+                function getBjSignView()
+                {
+                    var str = "hybrid://MABjCaPlugin:200/showSignViewWithInfo?{\"MASignerType\":\"MASignerApplication\",\"MATemplateType\":\"1467106758647\",\"MASignerName\":\"张三\",\"MASignerIdNo\":\"3213\",\"policyId\":\"sh000001\"}";
+                    
+                    MAPlugin.callNative(str,function(imagePath){
+                                        var img = document.getElementById("image");
+                                        img.src = imagePath;
+                                        },function(data){
+                                        console.log(data);
+                                        });
+                }
+            function getBjcaEncode()
+            {
+                var str = "hybrid://MABjCaPlugin:203/getBjCaEnCodeWithInfo?{\"MATemplateType\":\"1467106758647\"}";
+                
+                MAPlugin.callNative(str,function(string){
+                                    console.log(string);
+                                    });
+            }
+            function showCommentViewController()
+            {
+                var str = "hybrid://MABjCaPlugin:202/showSignMutiViewWithInfo?{\"MASignerIdNo\":\"12312\",\"MATemplateType\":\"HD_SIGNERMUTIINFO\",\"policyId\":\"sh000001\"}";
+                
+                MAPlugin.callNative(str,function(imagePath){
+                                    var img = document.getElementById("image");
+                                    img.src = imagePath;
+                                    });
+            }
+            function capturePhoto(){
+                var str = "hybrid://MABjCaPlugin:201/showCamaraViewWithInfo?{\"MATemplateType\":\"1467106758647\",\"s_cid\":\"20\",\"p_cid\":\"500\",\"policyId\":\"sh000001\"}";
+                
+                MAPlugin.callNative(str,function(imagePath){
+                                    var img = document.getElementById("image");
+                                    img.src = imagePath;
+                                    });
+            }
+            function IDOCR(){
+                var str = "hybrid://MARecognize:100/idCardRecognize?{\"cardType\":\"2\",\"typeName\":\"二代身份证\"}";
+                
+                MAPlugin.callNative(str,function(result){
+                                    console.log(result);
+                                    });
+            }
+            function BankCardOCR(){
+                var str = "hybrid://MARecognize:101/bankCardRecognize";
+                MAEntryPlugin.callNative(str,function(bankDic){
+                                         console.log(bankDic);
+                                         //var img = document.getElementById("image");
+                                         //img.src = imagePath;
+                                         });
+            }
+            
+            document.addEventListener("deviceready",onDeviceReady,false);
+            
+            //Cordova加载完成会触发
+            function onDeviceReady() {
+                console.log('onDeviceReady');
+            }
+            
+            function getCurrentPosition(){
+                //定位数据获取成功响应
+                var onSuccess = function(position) {
+                    alert('纬度: '          + position.coords.latitude          + '\n' +
+                          '经度: '         + position.coords.longitude         + '\n' +
+                          '海拔: '          + position.coords.altitude          + '\n' +
+                          '水平精度: '          + position.coords.accuracy          + '\n' +
+                          '垂直精度: ' + position.coords.altitudeAccuracy  + '\n' +
+                          '方向: '           + position.coords.heading           + '\n' +
+                          '速度: '             + position.coords.speed             + '\n' +
+                          '时间戳: '         + position.timestamp                + '\n');
+                };
+                
+                //定位数据获取失败响应
+                function onError(error) {
+                    alert('code: '    + error.code    + '\n' +
+                          'message: ' + error.message + '\n');
+                }
+                
+                //开始获取定位数据
+                navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            }
+            
+            function testConsole(){
+                var message = "I am Alert Dialog!";
+                var title = "ALERT";
+                var buttonName = "Alert Button";
+                
+                navigator.notification.alert(message, alertCallback, title, buttonName);
+                
+                function alertCallback() {
+                    console.log("Alert is Dismissed!");
+                }
+            }
+            
+            function testDownload() {
+                cordova.plugins.Download.file({
+                                              url: "http://140.207.91.54:8098/jl_server/downFile.do?isAddSharePath=true&fileName=/data/kmss/resource/app/junlong_V4.39.zip",
+                                              name: "test",
+                                              type: "zip",
+                                              filePath :""
+                                              },function (ret) {
+                                              alert("下载完成");
+                                              }, function (err) {
+                                              alert("下载失败");
+                                              })
+            }
+            
+            function getTempletInfo() {
+                cordova.plugins.toastJxLifeRemoteSignature.fetchTemplate({
+                                                                         businessType: "JYB_ENTRY_CONTRACT_SIGN",
+                                                                         relaId : "88888888",
+                                                                         },function (ret) {
+                                                                         alert("下载完成");
+                                                                         }, function (err) {
+                                                                         alert("下载失败");
+                                                                         })
+            }
+            
+            function getBjSignView1() {
+                cordova.plugins.toastJxLifeRemoteSignature.sigName({
+                                                                   businessType: "JYB_ENTRY_CONTRACT_SIGN",
+                                                                   relaId : "1590098798",
+                                                                   },function (ret) {
+                                                                   alert("完成");
+                                                                   }, function (err) {
+                                                                   alert("失败");
+                                                                   })
+            }
+            
+            function showCommentViewController1() {
+                cordova.plugins.toastJxLifeRemoteSignature.sigRisk({
+                                                                   businessType: "JYB_ENTRY_CONTRACT_SIGN",
+                                                                   relaId : "1590098798",
+                                                                   },function (ret) {
+                                                                   alert("完成");
+                                                                   }, function (err) {
+                                                                   alert("失败");
+                                                                   })
+            }
+            
+            function getBjcaEncode1() {
+                cordova.plugins.toastJxLifeRemoteSignature.submitSig({
+                                                                     businessType: "JYB_ENTRY_CONTRACT_SIGN",
+                                                                     relaId : "1590098798",
+                                                                     },function (ret) {
+                                                                     alert("完成");
+                                                                     }, function (err) {
+                                                                     alert("失败");
+                                                                     })
+            }
+            
+            
+            function testCA() {
+                var Obj = {
+                    businessType: 'JYB_ENTRY_CONTRACT_SIGN',
+                    relaId: '88888888'
+                };
+
+                 cordova.plugins.JxLifeRemoteSignature.fetchTemplate({
+                                                                         businessType: "JYB_ENTRY_CONTRACT_SIGN",
+                                                                         relaId : "ec648000fef04180ab90bae010b502eb",
+                                                                         },function (ret) {
+                                                                         alert("下载完成");
+                                                                         }, function (err) {
+                                                                         alert("下载失败");
+                                                                         })
+                // cordova.plugins.toastJxLifeRemoteSignature.fetchTemplate(function (bizData) {
+                //                                                     alert("初始化完成");
+                //                                                     }, function (err) {
+                //                                                     alert("初始化失败");
+                //                                                     console.log(err);
+                //                                                     })
+            }
+            
+            function testSignature() {
+                var obj = {
+                    signType: '1',
+                    positionKeyWords: '',
+                    sortNo: 0,
+                    signLabelText: '',
+                    signObject: '2',
+                    divId: 'JYB_ENTRY_CONTRACT_SIGN-04',
+                    smallDivid: '',
+                    businessType: 'JYB_ENTRY_CONTRACT_SIGN',
+                    relaId: 'ec648000fef04180ab90bae010b502eb',
+                    type: '1',
+                    ruleFun:''
+                };
+                
+                //onlySign
+                cordova.plugins.JxLifeRemoteSignature.onlySign(obj,function (ret) {
+                                                              alert("下载完成");
+                                                              console.log(ret);
+                                                              }, function (err) {
+                                                              alert("下载失败");
+                                                              console.log(err);
+                                                              })
+            }
+            function testSignatureSub(){
+                var obj = {
+                    businessType: 'JYB_ENTRY_CONTRACT_SIGN',
+                    relaId: 'ec648000fef04180ab90bae010b502eb',
+                    agentMobile: '',//投保人手机号
+                    smsCode: '',
+                    smstype:'',
+                    ruleFun:''
+                }
+                
+                cordova.plugins.JxLifeRemoteSignature.submitSig(obj,function (ret) {
+                                                                alert("下载完成");
+                                                                console.log(ret);
+                                                                }, function (err) {
+                                                                alert("下载失败");
+                                                                console.log(err);
+                                                                })
+            }
+            
+            
+                </script>
+            
+            </head>
+    <body>
+        <div class="app">
+            <h1>Apache Cordova</h1>
+            <input type="button" value="获取模板信息" onclick="getTempletInfo()" /><br/>
+            <input type="button" value="签名" onclick="getBjSignView1()" /><br/>
+            <input type="button" value="拍照" onclick="capturePhoto()" /><br/>
+            <input type="button" value="批注" onclick="showCommentViewController1()" /><br/>
+            <input type="button" value="获取密文" onclick="getBjcaEncode1()" /><br/>
+            <input type="button" value="身份识别" onclick="IDOCR()" /><br/>
+            <input type="button" value="银行卡识别" onclick="BankCardOCR()" /><br/><br/>
+            <input type="button" value="测试log" onclick="testConsole()" /><br/><br/>
+            <input type="button" value="测试下载" onclick="testDownload()" /><br/><br/>
+            <button style="font-size:23px;" onclick="getCurrentPosition();">获取位置信息</button>
+            <input type="button" value="测试吉祥CA初始化" onclick="testCA()" /><br/><br/>
+            <input type="button" value="测试吉祥CA签名" onclick="testSignature()" /><br/><br/>
+            <input type="button" value="测试吉祥CA提交加密包" onclick="testSignatureSub()" /><br/><br/>
+        </div>
+        <br/>
+        <img width="100" height="60" id="image" src="#"/>
+    </body>
+</html>
+
