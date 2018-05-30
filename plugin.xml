@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-JxLifeRemoteSignature" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>JxLifeRemoteSignature</name>
+    <repo>https://github.com/zltech/JxLifeRemoteSignature.git</repo>
+    <issue>https://github.com/zltech/JxLifeRemoteSignature/issues</issue>
     <js-module name="JxLifeRemoteSignature" src="www/JxLifeRemoteSignature.js">
         <clobbers target="cordova.plugins.JxLifeRemoteSignature" />
     </js-module>
