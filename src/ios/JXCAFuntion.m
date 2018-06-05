@@ -48,11 +48,11 @@ static JXCAFuntion *caFuntion = nil;
 
 
 - (void)setupSignApi{
- #if TARGET_IPHONE_SIMULATOR//模拟器
- #elif TARGET_OS_IPHONE//真机
+#if TARGET_IPHONE_SIMULATOR//模拟器
+#elif TARGET_OS_IPHONE//真机
     signApi = [[SignAPI alloc] init];
     signApi.signAPIDelegate = self;
-    #endif
+#endif
     
 }
 
@@ -60,7 +60,7 @@ static JXCAFuntion *caFuntion = nil;
 - (void)configTempModel:(NSDictionary *)configTempInfo successBlock:(successBlock)successBlock faileBlock:(faileBlock)faileBlock{
     //设置渠道号
     [signApi setChannel:@"88888888"];
-    uuidStr = [self getUUID];
+    uuidStr = [self uuidString];
     __block OrigialContentObj *origialObj = nil;
     NSMutableDictionary *dic = [self joinRequestParam:@"EsignTemplateAction" withOperation:@"queryPadTemplate" withDictionary:configTempInfo];
     [MAFNetworkingTool POST:@"https://tesign.jxlife.com.cn/airsign/process.action" parameters:dic successBlock:^(id responesObj) {
@@ -68,13 +68,14 @@ static JXCAFuntion *caFuntion = nil;
         templetDic = [self dictionaryWithJsonString:[dic objectForKey:@"data"]];
         origialObj = [[OrigialContentObj alloc] init];
         //设置工单号
-        [origialObj setBusinessId:@"888888"];
+//        [origialObj setBusinessId:@"888888"];
+        [origialObj setBusinessId:uuidStr];
         //设置对应服务端的xslt的id
         [origialObj setDocStyleTid:@"123123"];
         //设置上传原文的格式
         [origialObj setContent_type:CONTENT_TPYE_HTML];
         //设置加密方法（需项目经理指导）
-        [origialObj setServerEncType:EncType_RSA];
+        [origialObj setServerEncType:EncType_SM2];
         //从沙盒取出原文并转化为data数据
         NSString *htmlStr= [templetDic objectForKey:@"templateHtml"];
         NSData *orgdata= [htmlStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -98,7 +99,7 @@ static JXCAFuntion *caFuntion = nil;
 //弹出普通签名框
 - (void)showSignView:(NSDictionary *)configInfoDic backBlock:(void (^)(UIImage *image))resultBlock{
     getCaImageAndEncode = resultBlock;
-
+    
     int res = [self configSignInfo:configInfoDic];
     int index = [[configInfoDic objectForKey:@"sortNo"] intValue];
     if(res == 1){
@@ -125,7 +126,7 @@ static JXCAFuntion *caFuntion = nil;
     
     if(res == 1){
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
-         massSignViewController = [signApi showCommentDialog:0];
+        massSignViewController = [signApi showCommentDialog:0];
         //设置modal样式
         [massSignViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
         [window.rootViewController presentViewController:massSignViewController animated:YES completion:nil];
@@ -212,7 +213,7 @@ static JXCAFuntion *caFuntion = nil;
  *  @param signIndex 第几个签名
  */
 - (void)clearSign:(int)signIndex{
-
+    
 }
 
 
@@ -233,7 +234,9 @@ static JXCAFuntion *caFuntion = nil;
     //签名规则：0关键字签名,1坐标,2Tid
     signCaptureObj.signRule.RuleType = @"0";
     
-    signCaptureObj.signRule.KWRule.KW = [[strdic1 objectForKey:userNameKey] objectForKey:@"objectLabel"];
+    NSString *strName = [[strdic1 objectForKey:userNameKey] objectForKey:@"objectLabel"];
+    
+    signCaptureObj.signRule.KWRule.KW = strName;
     //决定在第几页搜寻关键字
     signCaptureObj.signRule.KWRule.Pageno = @"1";
     //搜寻当页的第几个关键字
@@ -382,7 +385,7 @@ static JXCAFuntion *caFuntion = nil;
         [paramDic setObject:childDic forKey:@"cordovaImgMap"];
         [finalDic setObject:@"true" forKey:@"isSuccess"];
         [finalDic setObject:[self dictionaryToJson:paramDic] forKey:@"data"];
-       
+        
         NSString *str = [self dictionaryToJson:finalDic];
         successBlock(str);
     } failedBlock:^(NSError *error) {
@@ -526,4 +529,16 @@ static JXCAFuntion *caFuntion = nil;
     NSString *finalStr = [self dictionaryToJson:returnDic];
     return finalStr;
 }
+
+
+- (NSString *)uuidString
+{
+    CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
+    NSString *uuid = [NSString stringWithString:(__bridge NSString *)uuid_string_ref];
+    CFRelease(uuid_ref);
+    CFRelease(uuid_string_ref);
+    return [uuid lowercaseString];
+}
 @end
+
