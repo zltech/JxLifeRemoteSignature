@@ -63,7 +63,7 @@ static JXCAFuntion *caFuntion = nil;
     uuidStr = [self uuidString];
     __block OrigialContentObj *origialObj = nil;
     NSMutableDictionary *dic = [self joinRequestParam:@"EsignTemplateAction" withOperation:@"queryPadTemplate" withDictionary:configTempInfo];
-    [MAFNetworkingTool POST:@"https://tesign.jxlife.com.cn/airsign/process.action" parameters:dic successBlock:^(id responesObj) {
+    [MAFNetworkingTool POST:@"https://design.jxlife.com.cn/airsign/process.action" parameters:dic successBlock:^(id responesObj) {
         NSDictionary *dic = (NSDictionary *)responesObj;
         templetDic = [self dictionaryWithJsonString:[dic objectForKey:@"data"]];
         origialObj = [[OrigialContentObj alloc] init];
@@ -337,7 +337,7 @@ static JXCAFuntion *caFuntion = nil;
     //NSString *paths = [self imageURL];
     NSMutableDictionary *paramDic = [self joinUploadRequestParam:configDictionary];
     //拼接参数
-    [MAFNetworkingTool uploadWithPOST:@"https://tesign.jxlife.com.cn/airsign/fileupdown/upload.action" filePath:@"" configDic:paramDic imageData:imageData successBlock:^(NSDictionary *successDic) {
+    [MAFNetworkingTool uploadWithPOST:@"https://design.jxlife.com.cn/airsign/fileupdown/upload.action" filePath:@"" configDic:paramDic imageData:imageData successBlock:^(NSDictionary *successDic) {
         successBlock(successDic);
     } faileBlock:^(NSError *error) {
         faileBlock(@"上传失败");
@@ -366,7 +366,7 @@ static JXCAFuntion *caFuntion = nil;
     NSString *str = [self dictionaryToJson:finalDic];
     NSLog(@"%@",str);
     //拼接参数
-    [MAFNetworkingTool POST:@"https://tesign.jxlife.com.cn/airsign/process.action" parameters:[self joinRequestParam:@"EsignImageAction" withOperation:@"saveImageInfoByPlug" withDictionary:dicParam] successBlock:^(id responesObj) {
+    [MAFNetworkingTool POST:@"https://design.jxlife.com.cn/airsign/process.action" parameters:[self joinRequestParam:@"EsignImageAction" withOperation:@"saveImageInfoByPlug" withDictionary:dicParam] successBlock:^(id responesObj) {
         //分装返回参数
         NSMutableDictionary *finalDic = [NSMutableDictionary dictionary];
         NSMutableDictionary *paramDic = [NSMutableDictionary dictionary];
@@ -409,7 +409,7 @@ static JXCAFuntion *caFuntion = nil;
     NSString *str = [self dictionaryToJson:final];
     NSLog(@"%@",str);
     //拼接请求参数
-    [MAFNetworkingTool POST:@"https://tesign.jxlife.com.cn/airsign/process.action" parameters:final successBlock:^(id responesObj) {
+    [MAFNetworkingTool POST:@"https://design.jxlife.com.cn/airsign/process.action" parameters:final successBlock:^(id responesObj) {
         if([[responesObj objectForKey:@"msgCode"] isEqualToString:@"000000"]){
             
             NSMutableDictionary *dic = [NSMutableDictionary dictionary];
