@@ -243,7 +243,7 @@ static JXCAFuntion *caFuntion = nil;
     signCaptureObj.signRule.KWRule.KWIndex = @"1";
     
     //以下这2个参数控制签名相对关键字的位置，pos决定偏移方向，kwoffset控制偏移量
-    signCaptureObj.signRule.KWRule.KWOffset = @"100";
+    signCaptureObj.signRule.KWRule.KWOffset = @"10";
     signCaptureObj.signRule.KWRule.KWPos = @"3";
     
     //设置笔迹颜色
@@ -251,7 +251,7 @@ static JXCAFuntion *caFuntion = nil;
     //设置笔迹粗细
     [signCaptureObj setStrokeWidth:8.0];
     //设置图片大小（按照实际签名图片计算）
-    [signCaptureObj setSignImageSize:CGSizeMake(400, 200)];
+    [signCaptureObj setSignImageSize:CGSizeMake(200, 100)];
     //设置图片的压缩比
     [signCaptureObj setScale:3.0];
     
