@@ -253,7 +253,7 @@ static JXCAFuntion *caFuntion = nil;
     //设置笔迹粗细
     [signCaptureObj setStrokeWidth:8.0];
     //设置图片大小（按照实际签名图片计算）
-    [signCaptureObj setSignImageSize:CGSizeMake(50, 500)];
+    [signCaptureObj setSignImageSize:CGSizeMake(600, 200)];
     //设置图片的压缩比
     [signCaptureObj setScale:3.0];
     
