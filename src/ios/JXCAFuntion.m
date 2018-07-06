@@ -245,7 +245,7 @@ static JXCAFuntion *caFuntion = nil;
     signCaptureObj.signRule.KWRule.KWIndex = @"1";
     
     //以下这2个参数控制签名相对关键字的位置，pos决定偏移方向，kwoffset控制偏移量
-    signCaptureObj.signRule.KWRule.KWOffset = @"10";
+    signCaptureObj.signRule.KWRule.KWOffset = @"1";
     signCaptureObj.signRule.KWRule.KWPos = @"3";
     
     //设置笔迹颜色
@@ -253,15 +253,15 @@ static JXCAFuntion *caFuntion = nil;
     //设置笔迹粗细
     [signCaptureObj setStrokeWidth:8.0];
     //设置图片大小（按照实际签名图片计算）
-    [signCaptureObj setSignImageSize:CGSizeMake(600, 200)];
+    [signCaptureObj setSignImageSize:CGSizeMake(100, 100)];
     //设置图片的压缩比
     [signCaptureObj setScale:3.0];
     
     //设置时间标签的方向，枚举：上、下、右下
-    [signCaptureObj setPos:TIMRPOD_DOWN];
+//    [signCaptureObj setPos:TIMRPOD_DOWN];
     
     //设置时间标签格式，如果不想要时间标签，此处不给值
-    [signCaptureObj setTimeFormat:@"yyyy-MM-dd HH:mm:ss"];
+//    [signCaptureObj setTimeFormat:@"yyyy-MM-dd HH:mm:ss"];
     //设置是否自定义签名框
     [signCaptureObj setIsViewMyself:false];
     //设置是否开启时间戳，对应服务器端配置
